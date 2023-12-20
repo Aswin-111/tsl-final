@@ -6,7 +6,7 @@
    import io from 'socket.io-client'
 
 
-   const socket = io.connect("http://192.168.1.61:3000")
+   const socket = io.connect(`${import.meta.env.VITE_SOCKET_HOST}`)
    import { useForm } from "react-hook-form";
     import { yupResolver } from "@hookform/resolvers/yup";
     import * as yup from "yup";
@@ -58,7 +58,7 @@ import UserStatusPopup from './UserStatusPopup';
 
 
         useEffect(() => {
-           
+         
         const socketInterval = function (){
            
             socket.emit('fetchusers',()=>{
