@@ -72,7 +72,8 @@ import UserStatusPopup from './UserStatusPopup';
         const fetchData = async () => {
         try {
         const response = await axios.get(
-            "http://192.168.1.61:3000/api/user/countrieslist"
+
+            `${import.meta.env.VITE_BASE_URL}/api/user/countrieslist`
         );
         console.log(response.data,'res')
         setCountries(response.data);
@@ -169,8 +170,6 @@ import UserStatusPopup from './UserStatusPopup';
 
             console.log(updateddata,'updateddata')
 
-            // let response = await axios.post("http://192.168.1.1.84:3000/api/user/registerUser",updateddata)
-            // console.log(response)
         }
         
 

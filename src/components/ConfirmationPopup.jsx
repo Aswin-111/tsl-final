@@ -1,21 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from "react"
+
 import axios from 'axios'
 const ConfirmationPopup = ({setEdit, details, otp, setUsers, setUserStatusErr}) => {
-// useEffect(()=>{
-// // console.log(details,'confirm');
 
-
-  
-
-
-// },[])
 
 
 
 function submitEvent() {
   console.log('submit');
-  axios.post('http://192.168.1.61:3000/api/user/registerUser', details)
+  axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/registerUser`, details)
     .then((res) => {
       console.log(res,'line 18');
       if (res.data) {

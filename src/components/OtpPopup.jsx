@@ -11,7 +11,7 @@ const OtpPopup = ({ details, setSuccessToggle, setSuccessPageData, otp, setInval
 
 
 function resendOtp(){
-  axios.post('http://192.168.1.61:3000/api/user/registerUser', details)
+  axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/registerUser`, details)
   .then((res) => {
  console.log(res)
     if(res.data.message){
@@ -72,14 +72,7 @@ function resendOtp(){
     let fullotp = inputRefs.map((input) => input.current.value).join("");
 
     console.log(fullotp, details);
-    // dob: "19-3-2022,";
-    // email: "superman@gmail.com";
-    // firstName: "superman";
-    // languages: (2)[("English", "Malayalam")];
-    // phone: 2345543223;
-    // reference: "reference";
-    // secondName: "g";
-    // specialRemarks: "sh";
+   
 
     const completed_data = {
       first_name: details.firstName,
@@ -100,25 +93,13 @@ function resendOtp(){
 
     axios
       .post(
-        "http://192.168.1.61:3000/api/user/verify_otp",
+        `${import.meta.env.VITE_BASE_URL}/api/user/verify_otp`,
         completed_data
       )
       .then((res) => {
         console.log(res)
         if (res.data.message) {
-          // DOB: "6-3-2022,";
-          // email: "superman@gmail.com";
-          // first_name: "superman";
-          // id: 1;
-          // languages: "EnglishMalayalam";
-          // last_name: "g";
-          // otp: "";
-          // otpTimestamp: "2023-12-10T18:42:58.000Z";
-          // phone: 2232323223;
-          // reference: "reference";
-          // remark: "ss";
-          // userId: 4000;
-          // verify: "true";
+        
           console.log(res,'done')
           const data = res.data.data;
           setSuccessPageData(data)
@@ -135,11 +116,7 @@ function resendOtp(){
       })
   };
 
-  //  function handleCloseOtpPopup() {
-  //   setEdit(false);
-  //   otp(false);
-  //  }
-
+ 
 
 
 
@@ -150,7 +127,6 @@ function resendOtp(){
         <div className="row pop-up">
           <div className="col-12 pop-head otp-pop-head d-flex justify-content-center align-items-center">
             Enter your OTP
-            {/* <div className="otpCloseButton" role="button" onClick={handleCloseOtpPopup}>x</div> */}
           </div>
 
           <div className="col-12 mt-2 mb-2 pop-content otp-pop-content d-flex flex-column justify-content-center align-items-center">
@@ -169,7 +145,6 @@ function resendOtp(){
             </div>
 
             <div className="otp-timer color-red">
-              {/* Timer logic goes here */}
               <span style={{ color: "green" }}>{timer}</span>
             </div>
             {otpstatus && <span className="color-red">Invalid Otp</span>}

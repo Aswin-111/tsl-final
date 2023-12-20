@@ -1,10 +1,7 @@
 import { useState } from 'react';
 
 import SlidingContainer from '../components/SlidingContainer';
-import ConfirmationPopup from "../components/ConfirmationPopup";
-import UserStatusPopup from "../components/UserStatusPopup";
-import OtpPopup from "../components/OtpPopup";
-import SuccessCard from "../components/SuccessCard";
+
 
 
 const UserRegistration = () => {
@@ -45,10 +42,7 @@ const UserRegistration = () => {
         {isClicked && <SlidingContainer language={language} isClicked={isClicked} /> }
         
         
-        {/* <ConfirmationPopup /> */}
-        {/* <UserStatusPopup /> */}
-        {/* <OtpPopup /> */}
-        {/* <SuccessCard/> */}
+  
 
 
       </div>

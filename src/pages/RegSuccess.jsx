@@ -9,7 +9,7 @@ import axios from "axios";
 import io from 'socket.io-client'
 
 
-const socket = io.connect("http://192.168.1.61:3000")
+const socket = io.connect(`${import.meta.env.VITE_SOCKET_HOST}`)
 
 
 const RegSuccess = () => {
@@ -32,7 +32,7 @@ const RegSuccess = () => {
     const userId = localStorage.getItem("user_id")
 
 
-axios.get(`http://192.168.1.61:3000/api/user/listName/${userId}`).then((res)=>{
+axios.get(`${import.meta.env.VITE_BASE_URL}/api/user/listName/${userId}`).then((res)=>{
   console.log(res.data,'qwert')
   if(res.data){
   setUsers(res.data)
@@ -90,34 +90,6 @@ return ()=>{
           })
         }
 
-        {/* <div className="row success-list-row">
-          <div className="col-sm-6 col-0"></div>
-          <div className="col-sm-6 success-list-column">
-            <div className="success-list-number">2</div>
-            <p className="success-list-name">Nandana</p>
-          </div>
-        </div>
-        <div className="row success-list-row">
-          <div className="col-sm-6 col-0"></div>
-          <div className="col-sm-6 success-list-column">
-            <div className="success-list-number">3</div>
-            <p className="success-list-name">Krishnadas</p>
-          </div>
-        </div>
-        <div className="row success-list-row">
-          <div className="col-sm-6 col-0"></div>
-          <div className="col-sm-6 success-list-column">
-            <div className="success-list-number">4</div>
-            <p className="success-list-name">Jasmin</p>
-          </div>
-        </div>
-        <div className="row success-list-row">
-          <div className="col-sm-6 col-0"></div>
-          <div className="col-sm-6 success-list-column">
-            <div className="success-list-number">5</div>
-            <p className="success-list-name">Jeffin</p>
-          </div>
-        </div>   */}
 
       </div>
     

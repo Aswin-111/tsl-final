@@ -1,30 +1,4 @@
 /* eslint-disable react/prop-types */
-// /* eslint-disable react/prop-types */
-
-// import dayjs from 'dayjs';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
-// export default function ResponsiveDatePickers({ setDob,setTog }) {
-//   // Function to check if a date is in the future
-//   const isFutureDate = (date) => dayjs().isBefore(date);
-
-//   // Function to disable future dates
-//   const shouldDisableDate = (date) => isFutureDate(date);
-
-
-//   return (
-//     <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ m: 0, width: "100%", mt: 0, border: 0 }}>
-//       <DatePicker
-//         label="DOB"
-//         onChange={(newDate) => {setTog(false);setDob(newDate)}}
-//         shouldDisableDate={shouldDisableDate}
-//       />
-//     </LocalizationProvider>
-//   );
-// }
-
 
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -48,6 +22,7 @@ export default function ResponsiveDatePickers({ setDob, setTog }) {
         label="DOB"
         onChange={(newDate) => { setTog(false); setDob(newDate) }}
         shouldDisableDate={shouldDisableDate}
+        sx = {{bgcolor:"#fff",borderRadius:"5px",border:"0"}}
       />
     </LocalizationProvider>
   );
