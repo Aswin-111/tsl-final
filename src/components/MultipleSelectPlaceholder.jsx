@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import "./MultipleSelectPlaceholder.css";
+import "./MultipleSelectPlaceholder.css"
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -34,26 +34,34 @@ function getStyles(language, selectedLanguages, theme) {
 
 const MultipleSelectPlaceholder = ({ languageName, setLanguageName, langErr, setLangErr }) => {
   const theme = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleCloseClick = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleChange = (event) => {
-    if(selectedLanguages.length < 1){
-          setLangErr(true);
-    }
-    else{
+    if (selectedLanguages.length < 1) {
+      setLangErr(true);
+    } else {
       setLangErr(false);
     }
+
     const {
       target: { value },
     } = event;
-
 
     if (value.length < 1) {
       setLangErr(true);
     } else {
       setLangErr(false);
     }
-
+    console.log(value)
+    if(!value.includes('close')){
+      
     setLanguageName(typeof value === 'string' ? value.split(',') : value);
+  
+  }
   };
 
   const selectedLanguages = languageName || [];
@@ -68,7 +76,8 @@ const MultipleSelectPlaceholder = ({ languageName, setLanguageName, langErr, set
           onChange={handleChange}
           input={<OutlinedInput />}
           renderValue={(selected) => {
-            if (selected.length === 0) {
+            console.log(selected.includes("Click here to Close"),'close')
+            if (selected.length === 0 || selected.includes("Click here to Close")) {
               return <span>Select Languages</span>;
             }
 
@@ -76,29 +85,34 @@ const MultipleSelectPlaceholder = ({ languageName, setLanguageName, langErr, set
           }}
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label' }}
-          sx={{ pb:0, m:0, height:"7vh" }}
+          sx={{ pb: 0, m: 0, height: "3.1rem" }}
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+          onOpen={() => setIsOpen(true)}
         >
-          <MenuItem disabled>
-            <span>Select Languages</span>
+          <MenuItem onClick={handleCloseClick} value="close">
+            <span >Click here to Close</span>
           </MenuItem>
           {languages.map((language) => (
             <MenuItem
-              key={ language }
-              value={ language }
-              style={ getStyles(language, selectedLanguages, theme) }
+              key={language}
+              value={language}
+              style={getStyles(language, selectedLanguages, theme)}
             >
-              { language }
+              {language}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
     </div>
-  );
+  );  
 };
 
 MultipleSelectPlaceholder.propTypes = {
   setLanguageName: PropTypes.func.isRequired,
   languageName: PropTypes.arrayOf(PropTypes.string).isRequired,
+  langErr: PropTypes.bool.isRequired,
+  setLangErr: PropTypes.func.isRequired,
 };
 
 export default MultipleSelectPlaceholder;

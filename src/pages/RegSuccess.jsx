@@ -66,13 +66,11 @@ return ()=>{
         </div>
       </div>
 
-
       <div className="whatsapp-message">
         Please click here 
         <a href="https://wa.me/+919008290027" className="whatsapp-link">
           <img className="whatsapp-icon" src="./images/ripple.gif" alt="whatsapp-icon"/>
-        </a> 
-        and send a 'Hi' for registration completion.
+        </a> and send a 'Hi' for registration completion.
       </div>
 
 

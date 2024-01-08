@@ -3,9 +3,11 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 
-const OtpPopup = ({ details, setSuccessToggle, setSuccessPageData, otp, setInvalidOtp, otpstatus, toggleResend, resendState, setEdit}) => {
+const OtpPopup = ({ details, setSuccessToggle, setSuccessPageData, otp, setInvalidOtp, otpstatus, toggleResend, resendState, setEdit,allPopupState,setAllPopupState}) => {
   const [timer, setTimer] = useState(``);
   const [otpState, setOtpState] = useState(false)
+
+  const [showCloseBtn,setShowCloseBtn] = useState(false)
   let countDown = new Date(Date.now() + 1.03 * 60 * 1000);
 
 
@@ -49,14 +51,19 @@ function resendOtp(){
         }`
       );
       if (diff < 0) {
+        setShowCloseBtn(true)
         this.resendEnabled = true;
         this.message = "OTP expired! Click resend";
         clearInterval(update);
       toggleResend(false)
       setTimer("00 : 00")
       }
+      else{
+        setShowCloseBtn(false)
+      }
     }, 1000);
     return () => {
+      
       clearInterval(update);
     };
   }, [otpState]);
@@ -118,6 +125,11 @@ function resendOtp(){
 
  
 
+  function handleCloseOtpPopup() {
+    setEdit(false);
+    otp(false);
+   }
+
 
 
 
@@ -127,6 +139,7 @@ function resendOtp(){
         <div className="row pop-up">
           <div className="col-12 pop-head otp-pop-head d-flex justify-content-center align-items-center">
             Enter your OTP
+           {showCloseBtn && <div className="otpCloseButton" role="button" onClick={()=>{handleCloseOtpPopup();setAllPopupState(false)}}>x</div>}
           </div>
 
           <div className="col-12 mt-2 mb-2 pop-content otp-pop-content d-flex flex-column justify-content-center align-items-center">

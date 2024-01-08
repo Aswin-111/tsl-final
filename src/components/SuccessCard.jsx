@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty */
 /* eslint-disable react/prop-types */
+import axios from "axios";
 import { useEffect ,useState} from "react"
 
 
-const SuccessCard = ({ setConfirmPopup, data }) => {
+const SuccessCard = ({ setConfirmPopup, data ,sendEmail}) => {
 
     const [expiry,setExpiry] = useState({})
     
@@ -19,8 +20,13 @@ const SuccessCard = ({ setConfirmPopup, data }) => {
     console.log(yearOfJoining);
 
 useEffect(()=>{
-    
-    
+
+    axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/send-email`,{to:sendEmail}).then((res)=>{
+        console.log('email sended successfully');
+    }).catch((err)=>{
+        console.log('error from success card 123',err);
+        
+    })
     try {
       const date = data.expiredDate.split('T')[0].split('-');
       const year = date[0]

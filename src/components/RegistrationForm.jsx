@@ -23,12 +23,13 @@ import ConfirmationPopup from "./ConfirmationPopup";
 import OtpPopup from "./OtpPopup";
 import SuccessCard from "./SuccessCard";
 import UserStatusPopup from './UserStatusPopup';
-    const RegistrationForm = ({setUsersCount}) => {
+import AgeConfirmationPopup from './AgeConfirmation';
+    const RegistrationForm = ({setUsersCount,allPopupState,setAllPopupState}) => {
     const countryRef = useRef()
     // Default id for India
     const defaultCountryId = 151;
-
-   
+const [confirmAge, setconfirmAge] = useState(false)
+    const [sendEmail,setSendEmail] = useState("")
     const [selectedGender, setSelectedGender] = useState("");
     const [existsError ,setExistsError] = useState({})
     const [userStatusState,setUserStatusState] = useState(false)
@@ -128,19 +129,19 @@ import UserStatusPopup from './UserStatusPopup';
 
         // Form Validation using YUP
         const schema = yup.object().shape({
-            firstName : yup.string().matches("^[A-Za-z]+$","Name must not contain special characters/numbers").required(),
-            secondName : yup.string().matches("^[A-Za-z]+$","Name must not contain special characters/numbers").required(),
-            email : yup.string().email().required(),
+            firstName : yup.string().required("First name is empty").matches("^[A-Za-z]+$","Name must not contain special characters/numbers"),
+            secondName : yup.string().required("First name is empty").matches("^[A-Za-z]+$","Name must not contain special characters/numbers"),
+            email : yup.string().required("First name is empty").email("Email is not valid"),
             // languageName: yup.array().of(yup.string()).min(1, 'Please select at least one language').required('Please select one or more languages'),
-            phone: yup.number().max(9999999999, 'Enter a valid phone number').positive().integer().required("Enter your phone number"),
+            phone: yup.number().required("Phone number is Empty").max(9999999999, 'Enter a valid phone number').positive().integer(),
             reference: yup.string().test({
                 name: 'atLeastOneReferenceSelected',
                 message: 'Please select a reference option',
                 test: function (value) {
                     return value !== undefined; // Ensure 'value' is not undefined
                 },
-            }).required("Reference cannot be null"),
-            specialRemarks: yup.string().trim().min(1, 'Please enter your remarks'),
+            }).required("Reference cannot be empty"),
+            // specialRemarks: yup.string().trim().min(1, 'Please enter your remarks'),
         });
     
     
@@ -159,6 +160,7 @@ import UserStatusPopup from './UserStatusPopup';
             })
 
             console.log(country,selectedGender,"line")
+            setSendEmail(data.email)
             const updated_data = {...data, dob:`${day}-${month}-${year},`, languages:selectedLanguages, country_code : selectedCountryPhonecode, country:country[0].name, gender: selectedGender}
 
 
@@ -231,7 +233,7 @@ import UserStatusPopup from './UserStatusPopup';
                             <div className="row h-100">
                                 <div className="col-8 h-100" style={{"background": "none"}}>
                                     {/* <input type="text" className="dob form-input-field w-100 h-100" placeholder="DOB"/> */}
-                                    <ResponsiveDatePickers setDob={setDob} register = {register} setTog = {setDoErr}/>
+                                    <ResponsiveDatePickers setDob={setDob} dob = {dob} register = {register} setTog = {setDoErr} setconfirmAge = {setconfirmAge} />
                                 </div>
 
                                 <div className="col-4 h-100 d-flex">
@@ -278,7 +280,7 @@ import UserStatusPopup from './UserStatusPopup';
                                 <div className="col-3 h-100 gx-0">
                                     <div className="h-100 pe-3">
                                         <div className="country-flag form-input-field w-100 h-100 d-flex justify-content-center align-items-center">
-                                            <img className="country-flag-image" src={selectedCountryFlag} />
+                                            <img className="country-flag-image" style = {{border:"0.5px solid #d9d9e3"}} src={selectedCountryFlag} />
                                         </div>
                                     </div>
                                 </div>
@@ -289,7 +291,7 @@ import UserStatusPopup from './UserStatusPopup';
                                 </div>
                                 <div className="col-7 h-100 gx-0">
                                     <input
-                                        type="number"
+                                        type="tel"
                                         placeholder="Phone number"
                                         name="phone"
                                         className="phone-number form-input-field w-100 h-100 rounded-0 rounded-end"
@@ -358,7 +360,7 @@ import UserStatusPopup from './UserStatusPopup';
                     <div className="row h-100">
                         <div className="col-12">
                             {/* <input type="text" class = "special_remarks form-input-field w-100 h-100" placeholder = "Special remarks"> */}                            
-                            <textarea className="form-input-field w-100 h-100" {...register("specialRemarks")}  style = {{border:errors.specialRemarks?"2px solid red":"none"}}
+                            <textarea className="form-input-field w-100 h-100"   style = {{border:errors.specialRemarks?"2px solid red":"none"}}
                                 name="specialRemarks"
                                 rows={isExpanded ? 4 : 1}
                                 onClick={expand}
@@ -390,15 +392,18 @@ import UserStatusPopup from './UserStatusPopup';
                         </div></div></div>
                        
                       
-                       {confirm && <ConfirmationPopup setEdit={setConfirm} details = {updateddata} otp = {setOtp} setUsers = {setUserStatusState} setUserStatusErr = {setExistsError}/>}
+                       {confirm && <ConfirmationPopup setEdit={setConfirm} details = {updateddata} otp = {setOtp} setUsers = {setUserStatusState} setUserStatusErr = {setExistsError} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState}/>}
                       
 
-                       {userStatusState && <UserStatusPopup setUsers = {setUserStatusState} message = {existsError} setUserStatusErr = {setExistsError}/>}
+                       {userStatusState && <UserStatusPopup setUsers = {setUserStatusState} message = {existsError} setUserStatusErr = {setExistsError} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState}/>}
 
                        
-                       {otppopup && <OtpPopup setEdit = {setConfirm} toggleResend = {setResend} resendState = {resendEnabled} otpstatus = {invalidOtp} setInvalidOtp = {setInvalidOtp} otp = {setOtp} details = {updateddata} setSuccessToggle = {setSuccess}  setSuccessPageData = {setSuccessData}/>}
+                       {otppopup && <OtpPopup setEdit = {setConfirm} toggleResend = {setResend} resendState = {resendEnabled} otpstatus = {invalidOtp} setInvalidOtp = {setInvalidOtp} otp = {setOtp} details = {updateddata} setSuccessToggle = {setSuccess}  setSuccessPageData = {setSuccessData} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState}/>}
                     
-                       {success && <SuccessCard setConfirmPopup={setConfirm}  data = {successData}/>}
+                       {success && <SuccessCard setConfirmPopup={setConfirm}  data = {successData} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState} sendEmail = {sendEmail}/>}
+       
+
+                       {confirmAge && <AgeConfirmationPopup setconfirmAge = {setconfirmAge} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState}/>}
                        
 
                         </form>

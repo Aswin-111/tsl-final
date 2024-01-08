@@ -4,3 +4,8 @@
     
     height: 5vh;
 }
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
+    background-color: rgb(69, 61, 65, 73%) !important;
+    color: white;
+}
