@@ -33,7 +33,7 @@ option {
 }
 
 .hero-main-container {
-  background-image: url("../images/step1.jpg");
+  background-image: url("../images/step1.webp");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -97,6 +97,11 @@ option {
     background: transparent;
     background-color: transparent;
     
+}
+
+
+.login-container {
+  min-height: 100%;
 }
 
 .slide-column-img {
@@ -839,7 +844,7 @@ input[type="text"],select{
 
   .slide-column-img {
       background-color: none;
-      background-image: url("../images/step1.jpg");
+      background-image: url("../images/step1.webp");
       background-repeat: no-repeat;
       background-size: cover;
       /* object-fit: cover; */
@@ -885,7 +890,7 @@ input[type="text"],select{
 
 
   .hero-main-container {
-    background-image: url("../images/step1-mobile.png");
+    background-image: url("../images/step1-mobile.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -922,7 +927,7 @@ input[type="text"],select{
 
 
   .slide-column-form-container {
-    background-image: url("../images/background-mobile.png");
+    background-image: url("../images/background-mobile.jpeg");
     background-repeat: no-repeat;
     background-attachment: fixed;
   }

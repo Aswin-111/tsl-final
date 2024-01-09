@@ -317,7 +317,7 @@ const OtpPopup = ({ details, setSuccessToggle, setSuccessPageData, otp, setInval
         <div className="row pop-up">
           <div className="col-12 pop-head otp-pop-head d-flex justify-content-center align-items-center">
             Enter your OTP
-            {showCloseBtn && <div className="otpCloseButton" role="button" onClick={() => { handleCloseOtpPopup(); setAllPopupState(false) }}>x</div>}
+            {showCloseBtn && <div className="otpCloseButton" role="button" onClick={() => { handleCloseOtpPopup(); setAllPopupState(false); setInvalidOtp(false); }}>x</div>}
           </div>
 
           <div className="col-12 mt-2 mb-2 pop-content otp-pop-content d-flex flex-column justify-content-center align-items-center">

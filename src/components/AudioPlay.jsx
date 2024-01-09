@@ -34,7 +34,7 @@ const AudioPlay = (props) => {
                 />
             </div>
             <div className="col-3 col-md-2 h-100 d-flex justify-content-center align-items-center">
-                <select className="reg-language-select-button text-start" 
+                <select className="reg-language-select-button text-start h-50" 
                   value={selectedLanguage} 
                   onChange={(e) =>{ const val =e.target.value;
                         setSelectedLanguage(val);

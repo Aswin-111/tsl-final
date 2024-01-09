@@ -22,7 +22,7 @@ export default function ResponsiveDatePickers({ setDob, setTog ,dob,setconfirmAg
   return (
     <LocalizationProvider 
       dateAdapter={AdapterDayjs} 
-      sx={{ m: 0, width: "100%", mt: 0, border: 0, height: "3rem", boxShadow: "0 0.5rem 1rem rgba(0, 0, 0, 0.4) !important"}}
+      sx={{ m: 0, width: "100%", mt: 0, border: 0, height: "3rem", boxShadow: "0 0.5rem 1rem rgba(0, 0, 0, 0.5) !important"}}
     >
       <DesktopDatePicker
         label="DOB"
