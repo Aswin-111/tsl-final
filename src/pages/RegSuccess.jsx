@@ -14,8 +14,8 @@ const socket = io.connect(`${import.meta.env.VITE_SOCKET_HOST}`)
 
 const RegSuccess = () => {
 
-  const [usersList,setUsers] = useState([])
-  const [usersCount,setUsersCount] = useState(0)
+  const [usersList, setUsers] = useState([])
+  const [usersCount, setUsersCount] = useState(0)
   
 
   useEffect(()=>{

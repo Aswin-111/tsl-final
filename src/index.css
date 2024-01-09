@@ -51,9 +51,10 @@ option {
   border: 1px solid white;
   color: white;
   border-radius: 8px;
-  height: 6vh;
+  height: 8vh;
   width: 12vw;
   text-align: left;
+  font-size: 1.5rem;
 }
 
 .home-language-select-button:hover {
@@ -149,7 +150,7 @@ option {
 }
 
 .slide-column-form-container {
-  background-image: url("../images/background.jpg");
+  background-image: url("../images/background.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 40%;
@@ -229,7 +230,7 @@ input[type="text"],select{
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  max-height: 2vh;
+  /* max-height: 2vh; */
   border: none;
 }
 
@@ -240,6 +241,15 @@ input[type="text"],select{
 .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
   box-shadow: none !important;
 }
+
+.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedEnd.css-1uvydh2 {
+  box-shadow: none !important;
+}
+
+
+/* End of date picker */
+
+
 
 
 
@@ -270,6 +280,16 @@ input[type="text"],select{
 }
 
 
+.special-remarks {
+  padding-left: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+/* .special-remarks::placeholder {
+  padding-left: -10px;
+} */
 
 .remarks-count {
   color: #2f3542; 
@@ -919,6 +939,8 @@ input[type="text"],select{
   .reg-language-select-button {
     font-size: 0.8rem;
     background-color: black;
+    height: 50%;
+    margin-right: 10px;
   }
     
 }

@@ -130,7 +130,7 @@ const [confirmAge, setconfirmAge] = useState(false)
         // Form Validation using YUP
         const schema = yup.object().shape({
             firstName : yup.string().required("First name is empty").matches("^[A-Za-z]+$","Name must not contain special characters/numbers"),
-            secondName : yup.string().required("First name is empty").matches("^[A-Za-z]+$","Name must not contain special characters/numbers"),
+            secondName : yup.string().required("Last name is empty").matches("^[A-Za-z]+$","Name must not contain special characters/numbers"),
             email : yup.string().required("First name is empty").email("Email is not valid"),
             // languageName: yup.array().of(yup.string()).min(1, 'Please select at least one language').required('Please select one or more languages'),
             phone: yup.number().required("Phone number is Empty").max(9999999999, 'Enter a valid phone number').positive().integer(),
@@ -294,6 +294,7 @@ const [confirmAge, setconfirmAge] = useState(false)
                                         type="tel"
                                         placeholder="Phone number"
                                         name="phone"
+                                        pattern="\d{10}"
                                         className="phone-number form-input-field w-100 h-100 rounded-0 rounded-end"
                                         {...register("phone")}
                                         onInput={(e) => {
@@ -360,7 +361,7 @@ const [confirmAge, setconfirmAge] = useState(false)
                     <div className="row h-100">
                         <div className="col-12">
                             {/* <input type="text" class = "special_remarks form-input-field w-100 h-100" placeholder = "Special remarks"> */}                            
-                            <textarea className="form-input-field w-100 h-100"   style = {{border:errors.specialRemarks?"2px solid red":"none"}}
+                            <textarea className="form-input-field w-100 h-100 special-remarks"   style = {{border:errors.specialRemarks?"2px solid red":"none"}}
                                 name="specialRemarks"
                                 rows={isExpanded ? 4 : 1}
                                 onClick={expand}

@@ -26,7 +26,7 @@ const UserRegistration = () => {
           name="language"
           value={language} 
           id='language' 
-          style={{"backgroundColor": "#081e59"}} 
+          style={{"backgroundColor": "#081e59", fontSize: "1.5rem"}} 
         >Select a Language 
           <option value="" disabled>Select a language</option>
           <option value="English">English</option>

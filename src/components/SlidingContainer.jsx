@@ -7,6 +7,11 @@ import Footer from "./Footer"
 import { useState,useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+import io from 'socket.io-client'
+
+
+const socket = io.connect(`${import.meta.env.VITE_SOCKET_HOST}`)
+
 const SlidingContainer = (props) => {
   const [usersCount,setUsersCount] = useState(0);
   const [allPopupState,setAllPopupState] = useState(false);
@@ -15,6 +20,21 @@ const SlidingContainer = (props) => {
 
 
   useEffect(()=>{
+
+    const socketInterval = function (){
+           
+      socket.emit('fetchusers',()=>{
+         
+      })
+  }
+  socket.on('usersupdate',(data)=>{
+      setUsersCount(data.results[0].count)
+  })
+  setInterval(socketInterval,3000)
+
+  return ()=>{
+    clearInterval(socketInterval)
+  }
 
   },[allPopupState]);
 
@@ -27,7 +47,7 @@ const SlidingContainer = (props) => {
     visible: {
       x: '0%',
       opacity: 1,
-      transition: { duration: 1.8, ease:'easeInOut' },
+      transition: { duration: 1, ease:'easeOut' },
     },
   };
 

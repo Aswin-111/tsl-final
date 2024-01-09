@@ -16,7 +16,7 @@ const UserStatusPopup = ({setUserStatusErr,setUsers,message,allPopupState,setAll
                 </div>
 
                 <div className="col-12 pop-btn d-flex justify-content-around">
-                    <button className="ok"  onClick = {()=>{setUsers(false);setAllPopupState(false)}}>OK</button>
+                    <button className="ok"  onClick = {() => { setUsers(false); setAllPopupState(false) }}>OK</button>
                 </div>
             </div>
         </div>
