@@ -340,7 +340,7 @@ const [confirmAge, setconfirmAge] = useState(false)
 
                         <div className="col-md-6 gy-4 form-input-container">
                     
-                            <div className="multiselect language form-input-field w-100 h-100">
+                            <div className="multiselect language form-input-field w-100 h-100" style={{border : langErr && "2px solid red"}}>
                                 {/* Multiselect */}
                                  <MultipleSelectPlaceholder
                                     languageName={selectedLanguages}

@@ -558,10 +558,12 @@ input[type="text"],select{
 
 .show-error {
   display: block;
-    color: black;
-    font-size: 0.9rem;
-    text-align: left;
-    font-weight: 700;
+  color: red;  
+  font-size:0.9rem;
+  font-weight: 600;
+  text-align: left;
+  background-color: hsla(360, 100%, 100%, 0.30);
+  border-radius: 2px;
 }
 .hide-error {
   display: none;
