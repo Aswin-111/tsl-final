@@ -940,7 +940,7 @@ input[type="text"],select{
   .slide-column-form-container {
     background-image: url("../images/background-mobile.jpeg");
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
     min-height: 100vh;
   }
 
