@@ -1,10 +1,16 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import axios from 'axios'
-const ConfirmationPopup = ({setEdit, details, otp, setUsers, setUserStatusErr}) => {
+import { useEffect } from 'react';
+const ConfirmationPopup = ({setEdit, details, otp, setUsers, setUserStatusErr,allPopupState,setAllPopupState}) => {
 
 
-
+useEffect(()=>{
+if(!allPopupState){
+  setAllPopupState(true)
+}
+},[])
 
 function submitEvent() {
   console.log('submit');
@@ -42,12 +48,13 @@ function submitEvent() {
                      <p>{details.email}</p>
                       <span style={{"color": "red", "font-weight": "bold"}}> & </span>
                       <p>{details.phone}</p>
-                      <span>Would you like to edit your email and phone number?</span>
+                      <span>Press edit to make changes</span>
                   </div>
 
                   <div className="col-12 pop-btn d-flex justify-content-around align-items-center">
-                      <button className="ok" onClick = {()=>submitEvent()}>OK</button>
-                      <button className="edit"  onClick = {()=>setEdit(false)}>Edit</button>
+                      
+                      <button className="edit"  onClick = {()=>{setEdit(false);setAllPopupState(false)}}>Edit</button>
+                      <button className="ok" onClick = {()=>submitEvent()}>Confirm</button>
                   </div>
               </div>
           </div>

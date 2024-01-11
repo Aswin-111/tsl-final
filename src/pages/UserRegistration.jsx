@@ -17,8 +17,9 @@ const UserRegistration = () => {
 
   return (
     <>
-      <div className="hero-main-container">
-        <select className="home-language-select-button" 
+      <div className="hero-main-container container-fluid m-0 p-0">
+      
+        <select className="home-language-select-button p-0" 
           onChange={(e) =>{ 
              const lang= e.target.value;
              setLanguage(lang);
@@ -26,8 +27,8 @@ const UserRegistration = () => {
           name="language"
           value={language} 
           id='language' 
-          style={{"backgroundColor": "#081e59"}} 
-        >Select a Language 
+          style={{ backgroundColor: "#081e59", fontSize: "1.5rem", textAlignLast: "center" }} 
+        >Select a Language
           <option value="" disabled>Select a language</option>
           <option value="English">English</option>
           <option value="Hindi">Hindi</option>

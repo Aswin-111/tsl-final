@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 
-const Footer = ({usersCount}) => {
+const Footer = ({ usersCount }) => {
   return (
     <>
         <div className="footer-container-wrapper w-100">

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import App from './App.jsx';
@@ -10,7 +10,7 @@ import './index.css'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
+    <Route path="/" element={<StrictMode><App /></StrictMode>}>
       <Route index element={<UserRegistration />} />
       <Route path="/registrationSuccess" element={<RegSuccess />} />
     </Route>

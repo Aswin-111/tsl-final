@@ -1,6 +1,7 @@
 * {
   margin: 0;
   font-family: "Poppins", sans-serif;
+  -webkit-appearance: menulist;
 }
 
 body {
@@ -19,24 +20,21 @@ input[type=number] {
   -moz-appearance: textfield;
   outline:none;
 }
+
 select[multiple] {
-
   overflow-y: auto; /* Add a scrollbar when needed */
-  
-
-
-  
   display: flex;
   align-items: center;
-
 }
-option{
+
+option {
   height: 100%;
   display: flex;
   align-items: center;
 }
+
 .hero-main-container {
-  background-image: url("../images/step1.jpg");
+  background-image: url("../images/step1.webp");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -54,9 +52,11 @@ option{
   border: 1px solid white;
   color: white;
   border-radius: 8px;
-  height: 6vh;
+  height: 8vh;
   width: 12vw;
-  text-align: left;
+  font-size: 1.5rem;
+
+  text-indent: 30px hanging;
 }
 
 .home-language-select-button:hover {
@@ -94,29 +94,33 @@ option{
     /* background-image: url("./step1.jpg");
     background-repeat: no-repeat;
     background-size: cover; */
-    width: 100vh;
+    width: 100vw;
     min-height: 100%;
     background: transparent;
     background-color: transparent;
     
 }
 
+
+/* .login-container {
+  min-height: 100%;
+} */
+
 .slide-column-img {
    /* background: transparent; */
-   background-color: rgba(0,0,0,0.2);
-   height: 100%;
+   /* background-color: rgba(0,0,0,0.2); */
+   min-height: 100%;
 }
 
-.slide-column-form-container {
-    background-image: url("../images/back.png");
+/* .slide-column-form-container {
+    background-image: url("../images/background.jpg");
     background-color: white;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position-x: 50%;
-    /* background-position-y: 10vh; */
     text-align: center;
     margin: auto;
-}
+    opacity:0.5
+} */
 
 .form-parent-container {
     height: auto;
@@ -124,7 +128,7 @@ option{
 
 .audio-section {
     background-image: linear-gradient(to top, black, #5f5f5f);
-    height: 8vh;
+    height: 3.7rem;
     width:100%;   
 }
 
@@ -152,17 +156,25 @@ option{
     margin: 2% auto 0;
 }
 
+.slide-column-form-container {
+  background-image: url("../images/background.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 40%;
+  text-align: center;
+}
+
 .form-container-wrapper {
     padding: 0 6%;
 }
 
 .form-input-container {
-    height: 7vh;
+    height: 3.1rem;
     color: black;
 }
 
 .form-input-container-textarea {
-  min-height: 7vh;
+  min-height: 3.1rem;
   color: black;
   border: none;
 }
@@ -225,9 +237,25 @@ input[type="text"],select{
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  max-height: 2vh;
+  /* max-height: 2vh; */
   border: none;
 }
+
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root{
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  box-shadow: none !important;
+}
+
+.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedEnd.css-1uvydh2 {
+  box-shadow: none !important;
+}
+
+
+/* End of date picker */
+
 
 
 
@@ -257,6 +285,18 @@ input[type="text"],select{
 .reference-name {
   font-size: 0.9rem;
 }
+
+
+.special-remarks {
+  padding-left: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+/* .special-remarks::placeholder {
+  padding-left: -10px;
+} */
 
 .remarks-count {
   color: #2f3542; 
@@ -306,20 +346,24 @@ input[type="text"],select{
 
 /* -------------------Sliding Animation------------ */
 
-.login-container {
+/* .login-container {
   position: absolute;
   right: 0;
   top: 0;
   height: 100vh;
-  width: 100%; /* Adjust width as needed */
-  /* background-color: rgb(255, 255, 255); */
-  transition: transform 1s; /* Use a smooth transition effect */
-  transform: translateX(100%); /* Initially off-screen to the right */
+  width: 100%; Adjust width as needed
+  background-color: rgb(255, 255, 255);
+  transition: transform 1s; Use a smooth transition effect
+  transform: translateX(100%); Initially off-screen to the right
 }
 
 .show-login {
-  transform: translateX(0); /* Move on-screen */
-}
+  transform: translateX(0); Move on-screen
+} */
+
+
+
+
 
 
 
@@ -369,7 +413,7 @@ input[type="text"],select{
 
 .pop-head {
     background-color: black;
-    background-image: linear-gradient(to top, black, #515151);
+    /* background-image: linear-gradient(to top, black, #515151); */
     border-top-left-radius: 17px;
     border-top-right-radius: 17px;
     color: white;
@@ -441,6 +485,7 @@ input[type="text"],select{
 
 .otp-pop-head {
   background-color: black;
+  position: relative;
 }
 
 .otp-pop-content {
@@ -583,9 +628,10 @@ input[type="text"],select{
 }
 
 .reg-card-contact-number {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   font-weight: bold;
   margin: 0;
+  color: #fff;
 }
 
 .reg-card-success-message {
@@ -595,7 +641,7 @@ input[type="text"],select{
 }
 
 .success-page-link {
-  padding: 2% 8%;
+  padding: 0.5% 8%;
   font-size: 1rem;
   font-weight: 600;
   color: white;
@@ -685,6 +731,9 @@ input[type="text"],select{
 }
 
 
+.popuptoggle{
+  overflow: hidden;
+}
 @media only screen and (max-width: 578px) {
 
   .popup-container-wrapper {
@@ -696,9 +745,9 @@ input[type="text"],select{
     min-height: 160vh;
     /* max-height: 200vh;   */
     /* height: 100%; */
-    z-index: 10;
-    position: fixed;
+    z-index: 1000;
     position: absolute;
+   
     bottom: 0;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -708,7 +757,7 @@ input[type="text"],select{
       height: 280px; /*in pixel*/
       width: 95%;
       position: absolute;
-      bottom: 30vh;
+      top : 30vh;
   }
 
   .pop-head {
@@ -735,7 +784,7 @@ input[type="text"],select{
     width: 95vw;
     height: 230px;   /*in pixel*/
     position: absolute;
-    bottom: 30vh;
+    top: 30vh;
   }
 
   .reg-card-number p {
@@ -798,7 +847,7 @@ input[type="text"],select{
 
   .slide-column-img {
       background-color: none;
-      background-image: url("../images/step1.jpg");
+      background-image: url("../images/step1.webp");
       background-repeat: no-repeat;
       background-size: cover;
       /* object-fit: cover; */
@@ -844,10 +893,14 @@ input[type="text"],select{
 
 
   .hero-main-container {
-    background-image: url("../images/step1-mobile.png");
+    background-image: url("../images/step1-mobile.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
   }  
  
   .home-language-select-button {
@@ -869,9 +922,26 @@ input[type="text"],select{
     overflow-y: hidden;
   }
 
+  .slide-column-img {
+    height: 25vh;
+  }
+
+  .audio-section {
+    height: 3rem;
+  }
+
+
   .parent-heading {
       font-size: 1.2rem;
       margin-top: 4%;
+  }
+
+
+  .slide-column-form-container {
+    background-image: url("../images/background-mobile.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
   }
 
   .footer-container-wrapper {
@@ -886,8 +956,11 @@ input[type="text"],select{
   .reg-language-select-button {
     font-size: 0.8rem;
     background-color: black;
+    height: 50%;
+    margin-right: 10px;
   }
-    
+
+  
 }
 
   

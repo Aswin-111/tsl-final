@@ -1,5 +1,5 @@
 
-const FooterSuccess = ({usersCount}) => {
+const FooterSuccess = ({ usersCount }) => {
   console.log(usersCount)
   return (
     <>

@@ -34,6 +34,7 @@
 }
 
 .rhap_play-pause-button {
+  margin: 0;
   color: #ffffff; /* Change the color to your desired color */
   font-size: 30px; /* Change the font size to your desired size */
   /* Add any other custom styles you want for the play button */
@@ -41,10 +42,19 @@
 
 .rhap_repeat-button {
   display: none !important;
+  margin: 0;
+  padding: 0;
 }
 
 .rhap_volume-controls {
   display: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+.rhap_additional-controls {
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -58,6 +68,13 @@
 
   .rhap_container {
       height: 100%;
+  }
+
+
+  .rhap_main {
+    margin: 0;
+    position: relative;
+    bottom: 5px;
   }
   
   .rhap_progress-container {
@@ -75,6 +92,11 @@
       margin-left: 0px;
       top: -3px;
   }
+
+  .rhap_controls-section {
+    margin: 0;
+    padding: 0;
+  }
     
   .rhap_main-controls {
       margin: 0;
@@ -88,7 +110,7 @@
   .rhap_time {
       font-size: 12px;
       color:white;
-      margin: 3%;
+      margin: 2%;
       width: 100%;
   }
     

@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty */
 /* eslint-disable react/prop-types */
+import axios from "axios";
 import { useEffect ,useState} from "react"
 
 
-const SuccessCard = ({ setConfirmPopup, data }) => {
+const SuccessCard = ({ setConfirmPopup, data ,sendEmail}) => {
 
     const [expiry,setExpiry] = useState({})
     
@@ -19,8 +20,13 @@ const SuccessCard = ({ setConfirmPopup, data }) => {
     console.log(yearOfJoining);
 
 useEffect(()=>{
-    
-    
+
+    axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/send-email`,{to:sendEmail}).then((res)=>{
+        console.log('email sended successfully');
+    }).catch((err)=>{
+        console.log('error from success card 123',err);
+        
+    })
     try {
       const date = data.expiredDate.split('T')[0].split('-');
       const year = date[0]
@@ -52,10 +58,12 @@ useEffect(()=>{
                     <div>
 
                         <img className="reg-card-star-life-logo" src="./images/star-life-logo-gold.png" alt="star-life-img"/>
-                        <p className="reg-card-contact-number">
-                            <span>Contact: 9834434322</span>
-                        </p>
                         <h3 className="reg-card-success-message">Registration Successful</h3>
+                        <p className="reg-card-contact-number">
+                            <span>Contact: +91 9008290027</span>
+                        </p>
+
+
                         <a className="success-page-link" href="/registrationSuccess">OK</a>
                     </div>
                 </div>
