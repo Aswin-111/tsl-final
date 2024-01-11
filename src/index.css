@@ -558,9 +558,10 @@ input[type="text"],select{
 
 .show-error {
   display: block;
-  color: red;  
-  font-size:0.9rem;
-  text-align: left;
+    color: black;
+    font-size: 0.9rem;
+    text-align: left;
+    font-weight: 700;
 }
 .hide-error {
   display: none;
