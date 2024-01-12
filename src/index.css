@@ -388,8 +388,9 @@ input[type="text"],select{
 
 
   .popup-container-wrapper {
-    background-color: rgba(0, 0, 0, 0.6);
-    /* background: transparent; */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* background-color: rgb(255, 255, 255, 0.8); */
+    background: transparent;
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -401,6 +402,7 @@ input[type="text"],select{
     bottom: 0;
     overflow-x: hidden;
     overflow-y: hidden;
+    backdrop-filter: blur(2px);
 }
 
 .pop-up {
@@ -562,9 +564,10 @@ input[type="text"],select{
   font-size:0.9rem;
   font-weight: 600;
   text-align: left;
-  background-color: hsla(360, 100%, 100%, 0.30);
+  background-color: hsla(360, 100%, 100%, 0.25);
   border-radius: 2px;
 }
+
 .hide-error {
   display: none;
 }
@@ -944,7 +947,7 @@ input[type="text"],select{
     background-image: url("../images/background-mobile.jpeg");
     background-repeat: no-repeat;
     background-attachment: scroll;
-    min-height : 100%;
+    min-height: 100%;
   }
 
   .footer-container-wrapper {

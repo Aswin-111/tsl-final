@@ -460,7 +460,7 @@ const OtpPopup = ({ details, setSuccessToggle, setSuccessPageData, otp, setInval
       country: details.country,
       phone: String(details.phone),
       reference: details.reference,
-      languages: details.languages.join(""),
+      languages: details.languages.join(","),
       remark: details.specialRemarks,
       OTP: fullotp,
     };

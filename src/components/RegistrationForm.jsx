@@ -24,11 +24,13 @@ import OtpPopup from "./OtpPopup";
 import SuccessCard from "./SuccessCard";
 import UserStatusPopup from './UserStatusPopup';
 import AgeConfirmationPopup from './AgeConfirmation';
+import InvalidAgePopup from './InvalidAgePopup';
     const RegistrationForm = ({setUsersCount,allPopupState,setAllPopupState}) => {
     const countryRef = useRef()
     // Default id for India
     const defaultCountryId = 151;
-const [confirmAge, setconfirmAge] = useState(false)
+    const [confirmAge, setconfirmAge] = useState(false)
+    const [invalidAge, setInvalidAge] = useState(false)
     const [sendEmail,setSendEmail] = useState("")
     const [selectedGender, setSelectedGender] = useState("");
     const [existsError ,setExistsError] = useState({})
@@ -161,7 +163,7 @@ const [confirmAge, setconfirmAge] = useState(false)
 
             console.log(country,selectedGender,"line")
             setSendEmail(data.email)
-            const updated_data = {...data, dob:`${day}-${month}-${year},`, languages:selectedLanguages, country_code : selectedCountryPhonecode, country:country[0].name, gender: selectedGender}
+            const updated_data = {...data, dob:`${day}-${month}-${year}`, languages:selectedLanguages, country_code : selectedCountryPhonecode, country:country[0].name, gender: selectedGender}
 
 
             if(!doErr && !langErr) {
@@ -233,7 +235,7 @@ const [confirmAge, setconfirmAge] = useState(false)
                             <div className="row h-100">
                                 <div className="col-8 h-100" style={{"background": "none"}}>
                                     {/* <input type="text" className="dob form-input-field w-100 h-100" placeholder="DOB"/> */}
-                                    <ResponsiveDatePickers setDob={setDob} dob = {dob} register = {register} setTog = {setDoErr} setconfirmAge = {setconfirmAge} />
+                                    <ResponsiveDatePickers setDob={setDob} dob = {dob} register = {register} setTog = {setDoErr} setconfirmAge = {setconfirmAge} setInvalidAge = {setInvalidAge} />
                                 </div>
 
                                 <div className="col-4 h-100 d-flex">
@@ -280,7 +282,7 @@ const [confirmAge, setconfirmAge] = useState(false)
                                 <div className="col-3 h-100 gx-0">
                                     <div className="h-100 pe-3">
                                         <div className="country-flag form-input-field w-100 h-100 d-flex justify-content-center align-items-center">
-                                            <img className="country-flag-image" style = {{border:"0.5px solid #d9d9e3"}} src={selectedCountryFlag} />
+                                            <img className="country-flag-image" style = {{border: "0.5px solid #d9d9e3"}} src={selectedCountryFlag} />
                                         </div>
                                     </div>
                                 </div>
@@ -301,7 +303,7 @@ const [confirmAge, setconfirmAge] = useState(false)
                                             // Restrict the input length to 10 digits
                                             e.target.value = e.target.value.slice(0, 10);
                                         }}
-                                        style = {{border:errors.phone || existsError.flag === "phone" ?"2px solid red":"none"}} />
+                                        style = {{border:errors.phone || existsError.flag === "phone" ? "2px solid red" : "none"}} />
                                 </div>
                             </div>
                             {errors.phone && <span className='show-error text-end'>Enter a valid phone number</span>}
@@ -310,7 +312,7 @@ const [confirmAge, setconfirmAge] = useState(false)
 
                     <div className="row gx-4">
                         <div className="col-md-6 gy-4 form-input-container">
-                            <div className="form-input-field w-100 h-100 d-flex justify-content-around" style = {{border:errors.reference?"2px solid red":"none"}}>
+                            <div className="form-input-field w-100 h-100 d-flex justify-content-around" style = {{border : errors.reference ? "2px solid red" : "none"}}>
                                 <div className="search-icon h-100 d-flex flex-column justify-content-center align-items-center">
                                 🔍
                                 </div>
@@ -361,7 +363,7 @@ const [confirmAge, setconfirmAge] = useState(false)
                     <div className="row h-100">
                         <div className="col-12">
                             {/* <input type="text" class = "special_remarks form-input-field w-100 h-100" placeholder = "Special remarks"> */}                            
-                            <textarea className="form-input-field w-100 h-100 special-remarks"   style = {{border:errors.specialRemarks?"2px solid red":"none"}}
+                            <textarea className="form-input-field w-100 h-100 special-remarks"   style = {{border: errors.specialRemarks ? "2px solid red" : "none"}}
                                 name="specialRemarks"
                                 rows={isExpanded ? 4 : 1}
                                 onClick={expand}
@@ -387,7 +389,7 @@ const [confirmAge, setconfirmAge] = useState(false)
                         <div className="col-12">
                             {/* <input class = "submit form-input-field w-100 h-100" type="submit" value ="Submit"> */}
                             <input className="submit form-input-field w-100 h-100" type="submit" value="Submit" onClick= {()=>
-                               { check()}
+                               { check() }
                             }/>
                         </div>
                         </div></div></div>
@@ -404,8 +406,9 @@ const [confirmAge, setconfirmAge] = useState(false)
                        {success && <SuccessCard setConfirmPopup={setConfirm}  data = {successData} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState} sendEmail = {sendEmail}/>}
        
 
-                       {confirmAge && <AgeConfirmationPopup setconfirmAge = {setconfirmAge} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState}/>}
+                       { confirmAge && <AgeConfirmationPopup setconfirmAge = {setconfirmAge} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState}/> }
                        
+                       {invalidAge && <InvalidAgePopup setInvalidAge = {setInvalidAge} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState}/> }
 
                         </form>
 
