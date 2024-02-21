@@ -76,7 +76,7 @@ import InvalidAgePopup from './InvalidAgePopup';
         try {
         const response = await axios.get(
 
-            `${import.meta.env.VITE_BASE_URL}/api/user/countrieslist`
+            `${import.meta.env.VITE_BASE_URL}/user/countrieslist`
         );
         console.log(response.data,'res')
         setCountries(response.data);
