@@ -14,7 +14,7 @@ if(!allPopupState){
 
 function submitEvent() {
   console.log('submit');
-  axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/registerUser`, details)
+  axios.post(`${import.meta.env.VITE_BASE_URL}/user/registerUser`, details)
     .then((res) => {
       console.log(res,'line 18');
       if (res.data) {
