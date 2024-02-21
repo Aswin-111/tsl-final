@@ -32,7 +32,7 @@ const RegSuccess = () => {
     const userId = localStorage.getItem("user_id")
 
 
-axios.get(`${import.meta.env.VITE_BASE_URL}/api/user/listName/${userId}`).then((res)=>{
+axios.get(`${import.meta.env.VITE_BASE_URL}/user/listName/${userId}`).then((res)=>{
   console.log(res.data,'qwert')
   if(res.data){
   setUsers(res.data)
