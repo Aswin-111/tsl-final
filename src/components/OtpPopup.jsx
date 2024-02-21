@@ -392,7 +392,7 @@ const OtpPopup = ({ details, setSuccessToggle, setSuccessPageData, otp, setInval
   let countDown = new Date(Date.now() + 1.03 * 60 * 1000);
 
   function resendOtp() {
-    axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/registerUser`, details)
+    axios.post(`${import.meta.env.VITE_BASE_URL}/user/registerUser`, details)
       .then((res) => {
         console.log(res)
         if (res.data.message) {
@@ -467,7 +467,7 @@ const OtpPopup = ({ details, setSuccessToggle, setSuccessPageData, otp, setInval
 
     axios
       .post(
-        `${import.meta.env.VITE_BASE_URL}/api/user/verify_otp`,
+        `${import.meta.env.VITE_BASE_URL}/user/verify_otp`,
         completed_data
       )
       .then((res) => {
