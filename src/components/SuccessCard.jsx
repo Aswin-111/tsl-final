@@ -21,7 +21,7 @@ const SuccessCard = ({ setConfirmPopup, data ,sendEmail}) => {
 
 useEffect(()=>{
 
-    axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/send-email`,{to:sendEmail}).then((res)=>{
+    axios.post(`${import.meta.env.VITE_BASE_URL}/user/send-email`,{to:sendEmail}).then((res)=>{
         console.log('email sended successfully');
     }).catch((err)=>{
         console.log('error from success card 123',err);
