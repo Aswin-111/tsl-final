@@ -2,10 +2,11 @@
    
 
    
-   
+ 
+ 
    import io from 'socket.io-client'
-
-
+ 
+ 
    const socket = io.connect(`${import.meta.env.VITE_SOCKET_HOST}`)
    import { useForm } from "react-hook-form";
     import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,11 +15,11 @@
     import MultipleSelectPlaceholder from "./MultipleSelectPlaceholder";
     import { useEffect, useRef, useState } from "react";
     import axios from "axios"
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 import ConfirmationPopup from "./ConfirmationPopup";
 import OtpPopup from "./OtpPopup";
 import SuccessCard from "./SuccessCard";
@@ -39,7 +40,7 @@ import InvalidAgePopup from './InvalidAgePopup';
     const [doErr,setDoErr] = useState(false)
         const [updateddata,setData] = useState({})
         const [success,setSuccess] = useState(false)
-    
+ 
         const [successData ,setSuccessData] = useState({})
         const [invalidOtp,setInvalidOtp] = useState(false)
         const [otppopup,setOtp] = useState(false)
@@ -52,20 +53,19 @@ import InvalidAgePopup from './InvalidAgePopup';
         const [selectedCountryFlag, setSelectedCountryFlag] = useState("");
         const [selectedCountryPhonecode, setSelectedCountryPhonecode] = useState("");
         const [dob, setDob] = useState("");
-        
+ 
         const [selectedLanguages, setSelectedLanguages] = useState([]);
-        
-        const[confirm,setConfirm] = useState(false)
-        
-
-
-
+        const [remark, setRemark]= useState("");
+ 
+        const[confirm,setConfirm] = useState(false);
+ 
+ 
         useEffect(() => {
-         
+ 
         const socketInterval = function (){
-           
+ 
             socket.emit('fetchusers',()=>{
-               
+ 
             })
         }
         socket.on('usersupdate',(data)=>{
@@ -75,67 +75,67 @@ import InvalidAgePopup from './InvalidAgePopup';
         const fetchData = async () => {
         try {
         const response = await axios.get(
-
+ 
             `${import.meta.env.VITE_BASE_URL}/user/countrieslist`
         );
         console.log(response.data,'res')
         setCountries(response.data);
-
+ 
         // Find the index of India in the countries array
         const indiaIndex = response.data.findIndex((country) => country.id === defaultCountryId);
-
+ 
         // Set India as the default country
         const defaultCountry = response.data[indiaIndex];
         setSelectedCountryId(defaultCountryId);
         setSelectedCountryFlag(defaultCountry ? defaultCountry.flag : "");
         setSelectedCountryPhonecode(defaultCountry ? defaultCountry.phonecode : "");
-
+ 
         setLoading(false);
         } catch (error) {
         console.error("Error fetching countries:", error.message);
         setLoading(false);
         }
     };
-
+ 
     fetchData();
-  
-    
-    
-
+ 
+ 
+ 
+ 
     return ()=>{
         clearInterval(socketInterval)
     }
     }, [defaultCountryId]);
-
-
-
-
+ 
+ 
+ 
+ 
         const handleCountryChange = (event) => {
             const selectedId = parseInt(event.target.value, 10);
             setSelectedCountryId(selectedId);
-        
+ 
             // Find the selected country object
             const selectedCountry = countries.find((country) => country.id === selectedId);
-        
+ 
             // Set the flag image URL and code for the selected country
             setSelectedCountryFlag(selectedCountry ? selectedCountry.flag : "");
             setSelectedCountryPhonecode(selectedCountry ? selectedCountry.phonecode : "");
         };
-
-
+ 
+ 
         function expand() {
             setIsExpanded(true);
         }
-
-        
-
+ 
+ 
+ 
         // Form Validation using YUP
         const schema = yup.object().shape({
             firstName : yup.string().required("First name is empty").matches("^[A-Za-z. ]+$","Name must not contain special characters."),
             secondName : yup.string().required("Last name is empty").matches("^[A-Za-z. ]+$","Name must not contain special characters."),
             email : yup.string().required("First name is empty").email("Email is not valid"),
             // languageName: yup.array().of(yup.string()).min(1, 'Please select at least one language').required('Please select one or more languages'),
-            phone: yup.number().required("Phone number is Empty").max(9999999999, 'Enter a valid phone number').positive().integer(),
+            phone: yup.number().required("Phone number is Empty").max(9999999999999, 'Enter a valid phone number').positive().integer(),
             reference: yup.string().test({
                 name: 'atLeastOneReferenceSelected',
                 message: 'Please select a reference option',
@@ -145,53 +145,55 @@ import InvalidAgePopup from './InvalidAgePopup';
             }).required("Reference cannot be empty"),
             // specialRemarks: yup.string().trim().min(1, 'Please enter your remarks'),
         });
-    
-    
+ 
+ 
         const { register, handleSubmit, formState : {errors}, setValue } = useForm({
             resolver : yupResolver(schema)
         });
-        
+ 
          function onSubmit(data) {
             console.log('hi')
             const year = dob.$y
             const day = dob.$D
             const month = dob.$M
-           
+ 
             const country = countries.filter((i)=>{
                 return i.id === selectedCountryId
             })
-
+ 
             console.log(country,selectedGender,"line")
             setSendEmail(data.email)
-            const updated_data = {...data, dob:`${day}-${month}-${year}`, languages:selectedLanguages, country_code : selectedCountryPhonecode, country:country[0].name, gender: selectedGender}
-
-
+            const updated_data = {...data, dob:`${day}-${month}-${year}`, languages:selectedLanguages, country_code : selectedCountryPhonecode, country:country[0].name, gender: selectedGender, specialRemarks: remark}
+ 
+ 
             if(!doErr && !langErr) {
-        
+ 
                 setData(updated_data)
                 setConfirm(true)
             }
-
+ 
             console.log(updateddata,'updateddata')
-
+ 
         }
-        
-
+ 
+ 
         function handleLanguageChange(event, value) {
             setSelectedLanguages(value);
             setValue('languageName', value, true); // Set the value in the form state
         }
-
-        
-
+ 
+ 
+ 
         const handleTextareaChange = (e) => {
             // Update character count or perform other actions as needed
             const value = e.target.value;
+            console.log(value);
+            setRemark(value);
             setSpecialCount(value.length);
         };
-
+ 
         function check(){
-           
+ 
             setIsExpanded(false)
             console.log(dob)
             if(!dob){
@@ -199,21 +201,21 @@ import InvalidAgePopup from './InvalidAgePopup';
             } else {
                 setDoErr(false)
             }
-
+ 
             if(selectedLanguages.length < 1){
                 setLangErr(true)
             } else {
                 setLangErr(false)
             }
         }
-
-
+ 
+ 
     return (
-        
+ 
         <form className="w-100 m-0 form-container-wrapper" style={{minHeight:"100vh !important"}} onSubmit={(e)=>{e.preventDefault();handleSubmit(onSubmit)()}}>
-            
+ 
             <div className="row g-4 container-fluid form-parent-container mx-0" >
-                
+ 
                 <div className="col-12">
                     <div className="row gx-4">
                         <div className="col-md-6 gy-4 form-input-container">
@@ -225,7 +227,7 @@ import InvalidAgePopup from './InvalidAgePopup';
                             {errors.secondName && <span className='show-error '>{errors.secondName.message}</span>}
                         </div>
                     </div>
-
+ 
                     <div className="row gx-4">
                         <div className="col-md-6 gy-4 form-input-container">
                             <input type="text" className="email form-input-field w-100 h-100" {...register("email")} placeholder="Email" style = {{border:errors.email || existsError.flag === "email"?"2px solid red":"none"}}/>
@@ -237,7 +239,7 @@ import InvalidAgePopup from './InvalidAgePopup';
                                     {/* <input type="text" className="dob form-input-field w-100 h-100" placeholder="DOB"/> */}
                                     <ResponsiveDatePickers setDob={setDob} dob = {dob} register = {register} setTog = {setDoErr} setconfirmAge = {setconfirmAge} setInvalidAge = {setInvalidAge} />
                                 </div>
-
+ 
                                 <div className="col-4 h-100 d-flex">
                                     <div className="h-100 d-flex justify-content-center align-items-center">
                                         <div className="gender-wrapper w-50 h-100 d-flex flex-column justify-content-center align-items-center">
@@ -252,12 +254,12 @@ import InvalidAgePopup from './InvalidAgePopup';
                                 </div>
                             </div>
                             {doErr && <span className='show-error '>Select your date of birth</span>}
-                            
+ 
                             {/* {(dob.length <= 0 || dob !== '111') && (dob === '111'&&<span className="show-error">Enter your date of birth</span>)} */}
                             {/* <span className="show-error text-end hide-error">Select a gender</span> */}
                         </div>
                     </div>
-
+ 
                     <div className="row gx-4">
                         <div className="col-md-6 gy-4 form-input-container">
                             <select
@@ -296,37 +298,38 @@ import InvalidAgePopup from './InvalidAgePopup';
                                         type="tel"
                                         placeholder="Phone number"
                                         name="phone"
-                                        pattern="\d{10}"
+                                        pattern="\d{7,13}"
                                         className="phone-number form-input-field w-100 h-100 rounded-0 rounded-end"
                                         {...register("phone")}
                                         onInput={(e) => {
                                             // Restrict the input length to 10 digits
-                                            e.target.value = e.target.value.slice(0, 10);
+                                            e.target.value = e.target.value.slice(0, 13);
                                         }}
-                                        style = {{border:errors.phone || existsError.flag === "phone" ? "2px solid red" : "none"}} />
+                                        style = {{border:errors.phone || existsError.flag === "phone" ? "2px solid red" : "none"}} 
+                                    />
                                 </div>
                             </div>
                             {errors.phone && <span className='show-error text-end'>Enter a valid phone number</span>}
                         </div>
                     </div>
-
+ 
                     <div className="row gx-4">
                         <div className="col-md-6 gy-4 form-input-container">
                             <div className="form-input-field w-100 h-100 d-flex justify-content-around" style = {{border : errors.reference ? "2px solid red" : "none"}}>
                                 <div className="search-icon h-100 d-flex flex-column justify-content-center align-items-center">
                                 🔍
                                 </div>
-
+ 
                                 <div className="reference-name d-flex flex-column justify-content-center align-items-center">
                                     Social media
                                     <input className="reference-radio-button" style={{"background" : "none"}} type="radio" name="reference" value="social_media" {...register("reference")}/>
                                 </div>
-
+ 
                                 <div className="reference-name d-flex flex-column justify-content-center align-items-center">
                                     Reference
                                     <input className="reference-radio-button" style={{"background" : "none"}} type="radio" name="reference" value="reference" {...register("reference")}/>
                                 </div>
-
+ 
                                 <div className="reference-name d-flex flex-column justify-content-center align-items-center">
                                     News
                                     <input className="reference-radio-button" style={{"background" : "none"}} type="radio" name="reference" value="news" {...register("reference")}/>
@@ -335,13 +338,13 @@ import InvalidAgePopup from './InvalidAgePopup';
                                     Others
                                     <input className="reference-radio-button" style={{"background" : "none"}}  type="radio" name="reference" value="others" {...register("reference")} />
                                 </div>
-
+ 
                             </div>
                             {errors.reference && <span className='show-error '>{errors.reference.message}</span>}
                         </div>
-
+ 
                         <div className="col-md-6 gy-4 form-input-container">
-                    
+ 
                             <div className="multiselect language form-input-field w-100 h-100" style={{border : langErr && "2px solid red"}}>
                                 {/* Multiselect */}
                                  <MultipleSelectPlaceholder
@@ -356,15 +359,16 @@ import InvalidAgePopup from './InvalidAgePopup';
                             </div>
                         </div>
                     </div>
-
+ 
                 </div>
-
+ 
                 <div className="col-12 form-input-container-textarea">
                     <div className="row h-100">
                         <div className="col-12">
                             {/* <input type="text" class = "special_remarks form-input-field w-100 h-100" placeholder = "Special remarks"> */}                            
                             <textarea className="form-input-field w-100 h-100 special-remarks"   style = {{border: errors.specialRemarks ? "2px solid red" : "none"}}
                                 name="specialRemarks"
+                                value={remark}
                                 rows={isExpanded ? 4 : 1}
                                 onClick={expand}
                                 placeholder="Special remarks" 
@@ -374,16 +378,16 @@ import InvalidAgePopup from './InvalidAgePopup';
                         </div>
                     </div>
                 </div>
-
+ 
                 <div className="col-12 g-0 text-end px-3">
                     {/* {errors.specialRemarks && <span className='show-error '>{errors.specialRemarks.message}</span>} */}
-                    
+ 
                     {errors.specialRemarks && (
         <span className="show-error">{errors.specialRemarks.message}</span>
       )}
                     <span className="remarks-count text-end">{specialCount}/500</span>
                 </div>
-
+ 
                 <div className="col-12 form-input-container">
                     <div className="row h-100">
                         <div className="col-12">
@@ -393,27 +397,27 @@ import InvalidAgePopup from './InvalidAgePopup';
                             }/>
                         </div>
                         </div></div></div>
-                       
-                      
+ 
+ 
                        {confirm && <ConfirmationPopup setEdit={setConfirm} details = {updateddata} otp = {setOtp} setUsers = {setUserStatusState} setUserStatusErr = {setExistsError} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState}/>}
-                      
-
+ 
+ 
                        {userStatusState && <UserStatusPopup setUsers = {setUserStatusState} message = {existsError} setUserStatusErr = {setExistsError} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState}/>}
-
-                       
+ 
+ 
                        {otppopup && <OtpPopup setEdit = {setConfirm} toggleResend = {setResend} resendState = {resendEnabled} otpstatus = {invalidOtp} setInvalidOtp = {setInvalidOtp} otp = {setOtp} details = {updateddata} setSuccessToggle = {setSuccess}  setSuccessPageData = {setSuccessData} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState}/>}
-                    
+ 
                        {success && <SuccessCard setConfirmPopup={setConfirm}  data = {successData} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState} sendEmail = {sendEmail}/>}
-       
-
+ 
+ 
                        { confirmAge && <AgeConfirmationPopup setconfirmAge = {setconfirmAge} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState}/> }
-                       
+ 
                        {invalidAge && <InvalidAgePopup setInvalidAge = {setInvalidAge} setAllPopupState = {setAllPopupState} allPopupState = {allPopupState}/> }
-
+ 
                         </form>
-
-
+ 
+ 
     )
     }
-
+ 
     export default RegistrationForm
