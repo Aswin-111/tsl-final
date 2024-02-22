@@ -1,28 +1,29 @@
 /* eslint-disable react/no-unescaped-entities */
 
+ 
 import { useEffect, useState } from "react";
 import FooterSuccess from "../components/FooterSuccess";
 import "../regSuccess.css";
 import axios from "axios";
-
-
+ 
+ 
 import io from 'socket.io-client'
-
-
+ 
+ 
 const socket = io.connect(`${import.meta.env.VITE_SOCKET_HOST}`)
-
-
+ 
+ 
 const RegSuccess = () => {
-
+ 
   const [usersList, setUsers] = useState([])
   const [usersCount, setUsersCount] = useState(0)
-  
-
+ 
+ 
   useEffect(()=>{
     const socketInterval = function (){
-           
+ 
       socket.emit('fetchusers',()=>{
-         
+ 
       })
   }
   socket.on('usersupdate',(data)=>{
@@ -30,25 +31,26 @@ const RegSuccess = () => {
   })
   setInterval(socketInterval,3000)
     const userId = localStorage.getItem("user_id")
-
-
+ 
+ 
 axios.get(`${import.meta.env.VITE_BASE_URL}/user/listName/${userId}`).then((res)=>{
   console.log(res.data,'qwert')
+  console.log(res);
   if(res.data){
   setUsers(res.data)
   }
 })
-
+ 
 setTimeout(()=>window.location.href="https://wa.me/+919008290027",30000)
-
-
+ 
+ 
 return ()=>{
   clearInterval(socketInterval)
 }
   },[])
   return (
     <div className="success-page-container m-0 p-0">
-
+ 
       <div className="row m-0 mt-2">
         <div className="col-sm-2 success-logo-column">
           <img className="success-logo" src="./images/starlife-logo.png" alt="success-logo" />
@@ -61,43 +63,44 @@ return ()=>{
           </p>
         </div>
         <div className="col-sm-2">
-
-
+ 
+ 
         </div>
       </div>
-
+ 
       <div className="whatsapp-message">
         Please click here 
         <a href="https://wa.me/+919008290027" className="whatsapp-link">
           <img className="whatsapp-icon" src="./images/ripple.gif" alt="whatsapp-icon"/>
         </a> and send a 'Hi' for registration completion.
       </div>
-
-
+ 
+ 
       <div className="success-list-wrap m-0 mt-4 p-0">
-    
+ 
         { usersList.map((i,ind) => {
           return (
             <div key={ind + 1} className="row g-0 m-0 success-list-row">
               <div className="col-sm-6 col-0"></div>
               <div className="col-sm-6 success-list-column">
-                <div className="success-list-number">{ ind+1 }</div>
+                <div className="success-list-number">{ ind + 1 }</div>
                 <p className="success-list-name mb-0">{ i.name }</p>
               </div>
             </div> )
           })
         }
-
-
+ 
+ 
       </div>
-    
-
-
+ 
+ 
+ 
       <FooterSuccess usersCount = {usersCount}/>
-
+ 
     </div>  
-
+ 
   )
 }
-
+ 
 export default RegSuccess
+
