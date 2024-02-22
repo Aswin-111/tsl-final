@@ -1,24 +1,24 @@
 import { useState } from 'react';
-
+ 
 import SlidingContainer from '../components/SlidingContainer';
-
-
-
+ 
+ 
+ 
 const UserRegistration = () => {
-
-
-  const [language, setLanguage] = useState(["English"]);
+ 
+ 
+  const [language, setLanguage] = useState("English");
   const [isClicked, setIsClicked] = useState(false);
-
-
+ 
+ 
   function proceedClicked() {
     setIsClicked(!isClicked);
   }
-
+ 
   return (
     <>
       <div className="hero-main-container container-fluid m-0 p-0">
-      
+ 
         <select className="home-language-select-button p-0" 
           onChange={(e) =>{ 
              const lang= e.target.value;
@@ -37,19 +37,19 @@ const UserRegistration = () => {
           <option value="Tamil">Tamil</option>
           <option value="Telugu">Telugu</option>
         </select>
-
+ 
         <button className="proceed-button" onClick={proceedClicked}>Proceed</button>
-
+ 
         {isClicked && <SlidingContainer language={language} isClicked={isClicked} /> }
-        
-        
-  
-
-
+ 
+ 
+ 
+ 
+ 
       </div>
-
+ 
     </>
   )
 }
-
+ 
 export default UserRegistration;
