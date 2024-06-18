@@ -7,34 +7,37 @@ import "../regSuccess.css";
 import axios from "axios";
  
  
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
  
  
-const socket = io.connect(`${import.meta.env.VITE_SOCKET_HOST}`)
+// const socket = io.connect(`${import.meta.env.VITE_SOCKET_HOST}`)
  
  
 const RegSuccess = () => {
  
+
+
+
+
+
+  const [newjoineescount,setNewJoineesCount] = useState(0);
+  const [beneficiariescount,setBeneficiariesCount] = useState(0);
+  const [totalmeditatorscount,setTotalMeditatorsCount] = useState(0);
+  const [waitinglistcount,setWaitingListCount] = useState(0);
   const [usersList, setUsers] = useState([])
-  const [usersCount, setUsersCount] = useState(0)
- 
- 
+
+
 
   const [config,setConfig] = useState("");
 
+ 
+ 
+ 
+
+
 
   useEffect(()=>{
-    const socketInterval = function (){
- 
-      socket.emit('fetchusers',()=>{
- 
-      })
-  }
 
-  socket.on('usersupdate',(data)=>{
-      setUsersCount(data.results[0].count)
-  })
-  setInterval(socketInterval,3000)
     const userId = localStorage.getItem("user_id")
  
     axios.get(`${import.meta.env.VITE_REG_SUCCESS}/appconfig`).then((res)=>{
@@ -53,12 +56,52 @@ axios.get(`${import.meta.env.VITE_BASE_URL}/user/listName/${userId}`).then((res)
   }
 })
  
+async function getRibbonData(){
+  try {
+    const response1 = await axios.get(`${import.meta.env.VITE_BASE_URL}/superadmin/this-month`);
+    console.log(response1 , "response1");
+    setNewJoineesCount(response1.data.count);   
+
+
+
+
+
+
+    const response2 = await axios.get(`${import.meta.env.VITE_BASE_URL}/superadmin/beneficiaries`);
+    console.log(response2,"response2");
+    setBeneficiariesCount(response2.data.list);
+
+
+ 
+
+
+
+    const response3 = await axios.get(`${import.meta.env.VITE_BASE_URL}/superadmin/meditation`);
+    console.log(response3,"response3");
+    setTotalMeditatorsCount(response3.data.count);
+
+
+
+
+
+
+    const response4 = await axios.get(`${import.meta.env.VITE_BASE_URL}/superadmin/waiting-list`);
+    console.log(response4.data.list,'response4');
+    setWaitingListCount(response4.data.list);
+
+
+    
+}
+
+catch(err){
+  console.error('Error fetching data:', err);
+}
+}
+getRibbonData()
 setTimeout(()=>window.location.href="https://wa.me/+919008290027",30000)
  
  
-return ()=>{
-  clearInterval(socketInterval)
-}
+
   },[])
   return (
     <div className="success-page-container m-0 p-0">
@@ -110,7 +153,8 @@ return ()=>{
  
  
  
-      <FooterSuccess usersCount = {usersCount}/>
+      <FooterSuccess usersdata = {{newjoineescount,beneficiariescount,waitinglistcount,totalmeditatorscount}}/>
+
  
     </div>  
  

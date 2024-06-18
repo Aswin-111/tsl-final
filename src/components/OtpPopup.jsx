@@ -89,7 +89,7 @@ const OtpPopup = ({ details, setSuccessToggle, setSuccessPageData, otp, setInval
       languages: details.languages.join(","),
       remark: details.specialRemarks,
       OTP: fullotp,
-      ref_id:details.ref_id
+      ref_id:details.ref_id ? details.ref_id : 0
     };
  
     axios

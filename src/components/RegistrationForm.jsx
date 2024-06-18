@@ -4,10 +4,10 @@
    
  
  
-   import io from 'socket.io-client'
+//    import io from 'socket.io-client'
  
  
-   const socket = io.connect(`${import.meta.env.VITE_SOCKET_HOST}`)
+//    const socket = io.connect(`${import.meta.env.VITE_SOCKET_HOST}`)
    import { useForm } from "react-hook-form";
     import { yupResolver } from "@hookform/resolvers/yup";
     import * as yup from "yup";
@@ -27,7 +27,7 @@ import SuccessCard from "./SuccessCard";
 import UserStatusPopup from './UserStatusPopup';
 import AgeConfirmationPopup from './AgeConfirmation';
 import InvalidAgePopup from './InvalidAgePopup';
-    const RegistrationForm = ({setUsersCount,allPopupState,setAllPopupState}) => {
+    const RegistrationForm = ({allPopupState,setAllPopupState}) => {
     const countryRef = useRef()
     // Default id for India
     const defaultCountryId = 151;
@@ -71,16 +71,16 @@ import InvalidAgePopup from './InvalidAgePopup';
            
             
 
-        const socketInterval = function (){
+        // const socketInterval = function (){
  
-            socket.emit('fetchusers',()=>{
+        //     socket.emit('fetchusers',()=>{
  
-            })
-        }
-        socket.on('usersupdate',(data)=>{
-            setUsersCount(data.results[0].count)
-        })
-        setInterval(socketInterval,50000)
+        //     })
+        // }
+        // socket.on('usersupdate',(data)=>{
+        //     setUsersCount(data.results[0].count)
+        // })
+        // setInterval(socketInterval,50000)
         const fetchData = async () => {
         try {
         const response = await axios.get(
@@ -112,7 +112,7 @@ import InvalidAgePopup from './InvalidAgePopup';
  
  
     return ()=>{
-        clearInterval(socketInterval)
+        // clearInterval(socketInterval)
     }
     }, [defaultCountryId]);
  
