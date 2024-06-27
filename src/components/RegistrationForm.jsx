@@ -27,7 +27,7 @@ import SuccessCard from "./SuccessCard";
 import UserStatusPopup from './UserStatusPopup';
 import AgeConfirmationPopup from './AgeConfirmation';
 import InvalidAgePopup from './InvalidAgePopup';
-    const RegistrationForm = ({allPopupState,setAllPopupState}) => {
+    const RegistrationForm = ({allPopupState,setAllPopupState,success,setSuccess}) => {
     const countryRef = useRef()
     // Default id for India
     const defaultCountryId = 151;
@@ -40,8 +40,7 @@ import InvalidAgePopup from './InvalidAgePopup';
     const [langErr,setLangErr] = useState(false)
     const [doErr,setDoErr] = useState(false)
         const [updateddata,setData] = useState({})
-        const [success,setSuccess] = useState(false)
- 
+        
         const [successData ,setSuccessData] = useState({})
         const [invalidOtp,setInvalidOtp] = useState(false)
         const [otppopup,setOtp] = useState(false)

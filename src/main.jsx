@@ -6,8 +6,6 @@ import UserRegistration from "./pages/UserRegistration";
 import RegSuccess from './pages/RegSuccess';
 import './index.css'
 
-
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<StrictMode><App /></StrictMode>}>

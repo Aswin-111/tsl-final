@@ -139,7 +139,7 @@ getRibbonData()
 
                 {/* Form parent container */}
 
-                <RegistrationForm allPopupState = {allPopupState} setAllPopupState = {setAllPopupState}/>
+                <RegistrationForm success={props.success} setSuccess={props.setSuccess} allPopupState = {allPopupState} setAllPopupState = {setAllPopupState}/>
 
                 <Footer usersdata = {{newjoineescount,beneficiariescount,waitinglistcount,totalmeditatorscount}}/>
             </div>
@@ -180,7 +180,7 @@ getRibbonData()
 
                 {/* Form parent container */}
 
-                <RegistrationForm  allPopupState = {allPopupState} setAllPopupState = {setAllPopupState}/>
+                <RegistrationForm success = {props.success} setSuccess={props.setSuccess} allPopupState = {allPopupState} setAllPopupState = {setAllPopupState}/>
 
                 <Footer usersdata = {{newjoineescount,beneficiariescount,waitinglistcount,totalmeditatorscount}}/>
 

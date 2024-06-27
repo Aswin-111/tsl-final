@@ -41,6 +41,7 @@ option {
   height: 100vh;
   position: relative;
   overflow-x: hidden;
+  
   /* overflow-y:hidden; */
 }
 
@@ -86,6 +87,10 @@ option {
 }
 
 
+.sliding-container{
+  min-height: 100vh;
+}
+
 
 /* Sliding Container Section */
 
@@ -95,16 +100,16 @@ option {
     background-repeat: no-repeat;
     background-size: cover; */
     width: 100vw;
-    min-height: 100%;
+    min-height: 100vh;
     background: transparent;
     background-color: transparent;
     
 }
 
 
-/* .login-container {
-  min-height: 100%;
-} */
+.login-container {
+  height: 100vh ;
+}
 
 .slide-column-img {
    /* background: transparent; */
@@ -826,16 +831,42 @@ input[type="text"],select{
 
 
 
-
-  
-
-
-  /* ----------------Media breakpoints for registration page--------------------- */
+/* ----------------Media breakpoints for registration page--------------------- */
 
 
 /* ---------Tabs and mobiles----------- */
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1024px) {
+
+  .hero-main-container {
+    background-image: url("../images/step1-mobile.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+  } 
+
+  .home-language-select-button {
+    bottom: 20vh;
+    right: 25vw;
+    width: 50vw;
+    height: 7vh;
+    position: fixed;
+    overflow-y: hidden;
+    text-align: center;
+  }
+
+  .proceed-button {
+    bottom: 10vh;
+    right: 25vw;
+    width: 50vw;
+    height: 7vh;
+    position: fixed;
+    overflow-y: hidden;
+  }
   
   .login-container {
     height: 100vh;
@@ -858,7 +889,7 @@ input[type="text"],select{
       background-size: cover;
       /* object-fit: cover; */
       width: 100vw;
-      height: 45vw;
+      min-height: 57vw;
   }
 
   .form-container-wrapper, .footer-container-wrapper {
@@ -866,7 +897,7 @@ input[type="text"],select{
   }
 
   .footer-container-wrapper {
-      padding: 0;
+      padding: 2% 0;
       margin: 6% 0;
   }
 
@@ -874,11 +905,46 @@ input[type="text"],select{
 
 /* Intermediate response for size between Laptop and Tablet */
 
-@media only screen and (max-width: 1080px) and (min-width: 768px) {
+@media only screen and (max-width: 992px) and (min-width: 768px) {
 
-  .login-container{
+  .hero-main-container {
+    background-image: url("../images/step1-mobile.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+  } 
+
+  .home-language-select-button {
+    bottom: 20vh;
+    right: 25vw;
+    width: 50vw;
+    height: 7vh;
+    position: fixed;
+    overflow-y: hidden;
+    text-align: center;
+  }
+
+  .proceed-button {
+    bottom: 10vh;
+    right: 25vw;
+    width: 50vw;
+    height: 7vh;
+    position: fixed;
+    overflow-y: hidden;
+  }
+  
+  .sliding-container {
     height: 100vh;
   }
+
+  .login-container{
+    height: 100%;
+  }
+
 
   .slide-column-form-container {
       padding: 2% 5%;
@@ -888,6 +954,16 @@ input[type="text"],select{
       width: 100vw;
       height: 100%;
   }
+
+  .slide-column-img {
+    background-color: none;
+    background-image: url("../images/step1.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* object-fit: cover; */
+    width: 100vw;
+    min-height: 53vw;
+}
   
 }
 
@@ -895,7 +971,7 @@ input[type="text"],select{
 
 /* Mobile phones */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
 
 
   .hero-main-container {
@@ -907,7 +983,7 @@ input[type="text"],select{
     -o-background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
-  }  
+  } 
  
   .home-language-select-button {
     bottom: 20vh;
@@ -966,14 +1042,4 @@ input[type="text"],select{
     margin-right: 10px;
   }
 
-  
 }
-
-  
-
-
-
-
-
-
-    

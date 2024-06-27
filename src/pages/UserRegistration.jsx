@@ -9,23 +9,32 @@ const UserRegistration = () => {
  
   const [language, setLanguage] = useState("English");
   const [isClicked, setIsClicked] = useState(false);
- 
+  const [success,setSuccess] = useState(false)
   function proceedClicked() {
     setIsClicked(!isClicked);
   }
 
   useEffect(() => {
+
     const handleBeforeUnload = (event) => {
       event.preventDefault();
       event.returnValue = ''; // This line is required for some browsers to show the default dialog
       return 'You have pressed the back button'; // Optional custom message (not always displayed)
     };
 
+  
+    
+   if(!success){
+    
+      
     window.addEventListener('beforeunload', handleBeforeUnload);
-
+   }
+   
     // Cleanup the event listener on component unmount
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      if(!success){
+      window.removeEventListener('beforeunload', handleBeforeUnload)
+      }
     };
   });
  
@@ -54,7 +63,7 @@ const UserRegistration = () => {
  
         <button className="proceed-button" onClick={proceedClicked}>Proceed</button>
  
-        {isClicked && <SlidingContainer language={language} isClicked={isClicked} /> }
+        {isClicked && <SlidingContainer success = {success} setSuccess = {setSuccess} language={language} isClicked={isClicked} /> }
  
  
  
