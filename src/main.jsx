@@ -5,6 +5,7 @@ import App from './App.jsx';
 import UserRegistration from "./pages/UserRegistration";
 import RegSuccess from './pages/RegSuccess';
 import './index.css'
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -12,6 +13,7 @@ const router = createBrowserRouter(
       <Route index element={<UserRegistration />} />
       <Route path="/:id" element={ <UserRegistration /> }/>
       <Route path="/registrationSuccess" element={<RegSuccess />} />
+      <Route path="/privacyPolicy" element={<PrivacyPolicy/>} />
     </Route>
   )
 );

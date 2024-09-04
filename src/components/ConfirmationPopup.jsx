@@ -6,6 +6,8 @@ import axios from 'axios'
 import { useEffect } from 'react';
 const ConfirmationPopup = ({setEdit, details, otp, setUsers, setUserStatusErr,allPopupState,setAllPopupState}) => {
  
+
+console.log("Logging Details", details);
  
 useEffect(()=>{
 if(!allPopupState){

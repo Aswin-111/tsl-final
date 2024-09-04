@@ -34,7 +34,7 @@ option {
 }
 
 .hero-main-container {
-  background-image: url("../images/step1.webp");
+  background-image: url("../images/step2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -306,6 +306,15 @@ input[type="text"],select{
 .remarks-count {
   color: #2f3542; 
   margin-right: 14px;
+}
+
+.privacy-policy {
+  background-color: hsla(0, 0%, 100%, 0.752);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.50) !important;
+}
+
+.privacy-policy-error {
+  border: 2px solid red !important;
 }
 
 
@@ -884,7 +893,7 @@ input[type="text"],select{
 
   .slide-column-img {
       background-color: none;
-      background-image: url("../images/step1.webp");
+      background-image: url("../images/step2.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       /* object-fit: cover; */
@@ -957,7 +966,7 @@ input[type="text"],select{
 
   .slide-column-img {
     background-color: none;
-    background-image: url("../images/step1.webp");
+    background-image: url("../images/step2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     /* object-fit: cover; */
