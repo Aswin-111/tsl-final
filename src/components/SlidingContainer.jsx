@@ -13,8 +13,8 @@ import axios from 'axios';
 // const socket = io.connect(`${import.meta.env.VITE_SOCKET_HOST}`)
 
 const SlidingContainer = (props) => {
-  const [newjoineescount,setNewJoineesCount] = useState(0);
-  const [classCount,setClassCount] = useState(0);
+  // const [newjoineescount,setNewJoineesCount] = useState(0);
+  const [classCount, setClassCount] = useState(0);
   const [beneficiariescount,setBeneficiariesCount] = useState(0);
   const [totalmeditatorscount,setTotalMeditatorsCount] = useState(0);
   const [waitinglistcount,setWaitingListCount] = useState(0);
@@ -22,6 +22,7 @@ const SlidingContainer = (props) => {
   const [allPopupState,setAllPopupState] = useState(false);
 
 
+console.log(classCount);
 
   // useEffect(()=>{
 
@@ -56,8 +57,9 @@ const SlidingContainer = (props) => {
 
  
       const response1 = await axios.get(`${import.meta.env.VITE_BASE_URL}/superadmin/classes`);
-      console.log(response1 , "response1");
-      setClassCount(response1.data.count);
+      console.log(response1, "response1");
+      setClassCount(response1.data.list);
+      
 
 
 
@@ -72,7 +74,7 @@ const SlidingContainer = (props) => {
 
       const response3 = await axios.get(`${import.meta.env.VITE_BASE_URL}/superadmin/meditation`);
       console.log(response3,"response3");
-      setTotalMeditatorsCount(response3.data.count);
+      setTotalMeditatorsCount(response3.data.result);
 
 
 
@@ -144,7 +146,7 @@ getRibbonData()
 
                 <RegistrationForm success={props.success} setSuccess={props.setSuccess} allPopupState = {allPopupState} setAllPopupState = {setAllPopupState}/>
 
-                <Footer usersdata = {{newjoineescount,classCount, beneficiariescount,waitinglistcount,totalmeditatorscount}}/>
+                <Footer usersdata = {{classCount, beneficiariescount,waitinglistcount,totalmeditatorscount}}/>
             </div>
         </div>
 
@@ -185,7 +187,7 @@ getRibbonData()
 
                 <RegistrationForm success = {props.success} setSuccess={props.setSuccess} allPopupState = {allPopupState} setAllPopupState = {setAllPopupState}/>
 
-                <Footer usersdata = {{newjoineescount,beneficiariescount,waitinglistcount,totalmeditatorscount}}/>
+                <Footer usersdata = {{classCount, beneficiariescount,waitinglistcount,totalmeditatorscount}}/>
 
             </div>
         </div>

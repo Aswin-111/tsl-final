@@ -20,7 +20,7 @@ const RegSuccess = () => {
 
 
 
-  const [newjoineescount,setNewJoineesCount] = useState(0);
+  // const [newjoineescount,setNewJoineesCount] = useState(0);
   const [classCount,setClassCount] = useState(0);
   const [beneficiariescount,setBeneficiariesCount] = useState(0);
   const [totalmeditatorscount,setTotalMeditatorsCount] = useState(0);
@@ -65,7 +65,7 @@ async function getRibbonData(){
 
     const response1 = await axios.get(`${import.meta.env.VITE_BASE_URL}/superadmin/classes`);
     console.log(response1 , "response1");
-    setClassCount(response1.data.count); 
+    setClassCount(response1.data.list); 
 
 
 
@@ -81,7 +81,7 @@ async function getRibbonData(){
 
     const response3 = await axios.get(`${import.meta.env.VITE_BASE_URL}/superadmin/meditation`);
     console.log(response3,"response3");
-    setTotalMeditatorsCount(response3.data.count);
+    setTotalMeditatorsCount(response3.data.result);
 
 
 
@@ -156,7 +156,7 @@ setTimeout(()=>window.location.href="https://wa.me/+919008290027",30000)
  
  
  
-      <FooterSuccess usersdata = {{newjoineescount,classCount, beneficiariescount,waitinglistcount,totalmeditatorscount}}/>
+      <FooterSuccess usersdata = {{classCount, beneficiariescount,waitinglistcount,totalmeditatorscount}}/>
 
  
     </div>  
