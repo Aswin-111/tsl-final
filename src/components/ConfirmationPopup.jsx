@@ -19,7 +19,7 @@ function submitEvent() {
   console.log('submit');
   axios.post(`${import.meta.env.VITE_BASE_URL}/user/registerUser`, details)
     .then((res) => {
-      console.log(res,'line 18');
+      console.log(res,'line 22');
       if (res.data) {
         setUsers(false)
         setEdit(false);
