@@ -13,7 +13,7 @@ import axios from 'axios';
 // const socket = io.connect(`${import.meta.env.VITE_SOCKET_HOST}`)
 
 const SlidingContainer = (props) => {
-  // const [newjoineescount,setNewJoineesCount] = useState(0);
+  const [newjoineescount,setNewJoineesCount] = useState(0);
   const [classCount, setClassCount] = useState(0);
   const [beneficiariescount,setBeneficiariesCount] = useState(0);
   const [totalmeditatorscount,setTotalMeditatorsCount] = useState(0);
@@ -51,14 +51,14 @@ console.log(classCount);
     
     async function getRibbonData(){
     try {
-      // const response1 = await axios.get(`${import.meta.env.VITE_BASE_URL}/superadmin/this-month`);
-      // console.log(response1 , "response1");
-      // setNewJoineesCount(response1.data.count);   
+      const response1 = await axios.get(`${import.meta.env.VITE_BASE_URL}/superadmin/this-month`);
+      console.log(response1 , "response1");
+      setNewJoineesCount(response1.data.count);   
 
  
-      const response1 = await axios.get(`${import.meta.env.VITE_BASE_URL}/superadmin/classes`);
-      console.log(response1, "response1");
-      setClassCount(response1.data.list);
+      // const response1 = await axios.get(`${import.meta.env.VITE_BASE_URL}/superadmin/classes`);
+      // console.log(response1, "response1");
+      // setClassCount(response1.data.list);
       
 
 
@@ -187,7 +187,7 @@ getRibbonData()
 
                 <RegistrationForm success = {props.success} setSuccess={props.setSuccess} allPopupState = {allPopupState} setAllPopupState = {setAllPopupState}/>
 
-                <Footer usersdata = {{classCount, beneficiariescount,waitinglistcount,totalmeditatorscount}}/>
+                <Footer usersdata = {{classCount,newjoineescount, beneficiariescount,waitinglistcount,totalmeditatorscount}}/>
 
             </div>
         </div>

@@ -9,19 +9,19 @@ const FooterSuccess = ({ usersdata }) => {
             <div className="footer row">
                 <div className="footer-sub-grp col-3">
                   <span className="footer-update">{totalmeditatorscount ? totalmeditatorscount : "-"}</span>
-                  <span className="footer-head">Meditators</span>
+                  <span className="footer-head">Total</span>
                 </div>
                 <div className="footer-sub-grp col-3">
                   <span className="footer-update"> {waitinglistcount ? waitinglistcount : "-"} </span>
-                  <span className="footer-head">Waiting List</span>
+                  <span className="footer-head">Waiting</span>
                 </div>
                 <div className="footer-sub-grp col-3">
                   <span className="footer-update">{beneficiariescount ? beneficiariescount : "-"}</span>
                   <span className="footer-head">Beneficiaries</span>
                 </div>
                 <div className="footer-sub-grp col-3">
-                  <span className="footer-update">{classCount ? classCount : "-"}</span>
-                  <span className="footer-head">Classes</span>
+                  <span className="footer-update">{newjoineescount ? newjoineescount : "-"}</span>
+                  <span className="footer-head">New</span>
                 </div>
             </div>
         </div>
