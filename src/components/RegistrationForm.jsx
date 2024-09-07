@@ -557,7 +557,7 @@ const RegistrationForm = ({
               }}
             />
             <span className="fs-6 ms-2 text-start">
-              I have read and agree to Thasmai Starlife's {""}
+              I have read and agreed to Thasmai Starlife's {""}
               <a href="/privacyPolicy" className="link-primary" target="_blank">Privacy Policy</a>
             </span>
           </span>
