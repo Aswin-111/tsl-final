@@ -16,8 +16,13 @@ if(!allPopupState){
 },[])
   
 function submitEvent() {
+  const { email, phone, country } = details;
   console.log('submit');
-  axios.post(`${import.meta.env.VITE_BASE_URL}/user/registerUser`, details)
+  axios.post(`${import.meta.env.VITE_BASE_URL}/user/registerUser`, {
+    email: email,
+    phone : String(phone),
+    country: country
+  })
     .then((res) => {
       console.log(res,'line 22');
       if (res.data) {
@@ -28,7 +33,7 @@ function submitEvent() {
     })
     .catch((error) => {
       // Handle the error, log or display a message
-      console.error('Error during registration:', error.response.data);
+      console.error('Error during registration:', error.response);
       if(error.response.data){
         otp(false)
         setEdit(false)
