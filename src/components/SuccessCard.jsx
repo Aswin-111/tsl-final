@@ -71,7 +71,7 @@ useEffect(()=>{
                 <div className="col-12 reg-success-card-head d-flex justify-content-between align-items-center">
                     <div className="reg-card-number">
                         <p>Card Number</p>
-                        <h1>{data.UId}</h1>
+                        <h1>TSL{data.UId}</h1>
                     </div>
  
                     <img className="reg-card-logo" src="./images/thasmai-card-logo.png" alt="Thasmai logo" />
@@ -105,6 +105,8 @@ useEffect(()=>{
                     <div className="reg-card-validity">
  
                         <p>VALID: { expiry.day}/{expiry.month}/{expiry.year }</p>
+                        {/* <p>VALID: 0 days</p> */}
+
                     </div>
                 </div>
             </div>
