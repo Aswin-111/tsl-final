@@ -203,7 +203,7 @@ const MultipleSelectPlaceholder = ({ languageName, setLanguageName, langErr, set
     <div>
       <FormControl sx={{ m: 0, pb: 0, width: "100%", border: 0, textAlign: "left" }}>
         <Select
-          multiple
+          // multiple
           displayEmpty
           value={selectedLanguages}
           onChange={handleChange}
@@ -211,7 +211,7 @@ const MultipleSelectPlaceholder = ({ languageName, setLanguageName, langErr, set
           renderValue={(selected) => {
             console.log(selected.includes("Click here to Close"), 'close');
             if (selected.length === 0 || selected.includes("Click here to Close")) {
-              return <span>Languages known</span>;
+              return <span>Preferred language for zoom class</span>;
             }
 
             return selected.join(', ');

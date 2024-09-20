@@ -166,7 +166,7 @@ const RegistrationForm = ({
       .boolean()
       // .oneOf([true], "You must accept the privacy policy")
       .required("Privacy policy must be accepted"),
-    });
+  });
 
   const {
     register,
@@ -175,7 +175,6 @@ const RegistrationForm = ({
     setValue,
   } = useForm({
     resolver: yupResolver(schema),
-
   });
 
   function onSubmit(data) {
@@ -242,7 +241,7 @@ const RegistrationForm = ({
       setLangErr(false);
     }
 
-    if(isprivacyChecked === null) {
+    if (isprivacyChecked === null) {
       setIsPrivacyChecked(false);
     }
   }
@@ -540,16 +539,21 @@ const RegistrationForm = ({
 
           <span className="remarks-count text-end">{specialCount}/500</span>
 
-
-          <span className={ (!errors.privacyCheck && isprivacyChecked === false) ? "border border-2 border-danger privacy-policy d-flex align-items-center rounded p-2" : "privacy-policy d-flex align-items-center rounded p-2"}>
-            <input 
-              type="checkbox" 
-              name="privacyCheck" 
+          <span
+            className={
+              !errors.privacyCheck && isprivacyChecked === false
+                ? "privacy-policy border border-2 border-danger d-flex align-items-center rounded p-2"
+                : "privacy-policy d-flex align-items-center rounded p-2"
+            }
+          >
+            <input
+              type="checkbox"
+              name="privacyCheck"
               {...register("privacyCheck")}
-              id="" 
-              className="form-check-input border border-black" 
+              id=""
+              className="form-check-input border border-black"
               onClick={(e) => {
-                if(e.target.checked) {
+                if (e.target.checked) {
                   setIsPrivacyChecked(true);
                 } else {
                   setIsPrivacyChecked(false);
@@ -558,10 +562,11 @@ const RegistrationForm = ({
             />
             <span className="fs-6 ms-2 text-start">
               I have read and agreed to Thasmai Starlife's {""}
-              <a href="/privacyPolicy" className="link-primary" target="_blank">Privacy Policy</a>
+              <a href="/privacyPolicy" className="link-primary" target="_blank">
+                Privacy Policy
+              </a>
             </span>
           </span>
-
         </div>
 
         {/* <span className="col-12 form-input-container d-flex align-items-center">
@@ -631,6 +636,7 @@ const RegistrationForm = ({
           setAllPopupState={setAllPopupState}
           allPopupState={allPopupState}
           sendEmail={sendEmail}
+          setSuccess={setSuccess}
         />
       )}
 

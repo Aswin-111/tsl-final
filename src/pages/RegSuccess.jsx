@@ -107,7 +107,7 @@ const RegSuccess = () => {
             className="whatsapp-icon"
             src="./images/ripple.gif"
             alt="whatsapp-icon"
-          />
+          /> 
         </a>{" "}
         and send a 'Hi' for registration completion.
       </div>

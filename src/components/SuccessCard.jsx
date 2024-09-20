@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect ,useState} from "react"
  
  
-const SuccessCard = ({ setConfirmPopup, data ,sendEmail}) => {
+const SuccessCard = ({ setConfirmPopup, data ,sendEmail, setSuccess}) => {
  
     const [expiry, setExpiry] = useState({})
  
@@ -104,8 +104,8 @@ useEffect(()=>{
  
                     <div className="reg-card-validity">
  
-                        <p>VALID: { expiry.day}/{expiry.month}/{expiry.year }</p>
-                        {/* <p>VALID: 0 days</p> */}
+                        {/* <p>VALID: { expiry.day}/{expiry.month}/{expiry.year }</p> */}
+                        <p>VALID: 0 days</p>
 
                     </div>
                 </div>

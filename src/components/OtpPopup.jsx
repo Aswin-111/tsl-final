@@ -75,7 +75,7 @@ const OtpPopup = ({ details, setSuccessToggle, setSuccessPageData, otp, setInval
  
   const submitOtp = () => {
     let fullotp = inputRefs.map((input) => input.current.value).join("");
-    console.log(fullotp, details);
+    console.log(fullotp, details, "..............");
  
     const completed_data = {
       first_name: details.firstName,
